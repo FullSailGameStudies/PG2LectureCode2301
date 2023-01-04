@@ -69,10 +69,17 @@ namespace Day01
                 2) if the method returns data, it is usually best to store that data in a variable on the line where you call the method.
              
             */
+            int hz = 2000;
+            int duration = 1500;
+            Console.Beep(hz, duration);
+            string someData = Console.ReadLine();
+
+            //$ - C# interpolated string
+            Console.WriteLine($"You typed {someData}. Odd.");
 
             /*
                 ╔══════════════════════════╗ 
-                ║Parameters: Pass by Value.║
+                ║Parameters: Pass by Value.║ (COPY)
                 ╚══════════════════════════╝ 
              
                 Copies the value to a new variable in the method.
@@ -91,9 +98,11 @@ namespace Day01
              
             */
             Calculator t1000 = new Calculator();
+            //int result = t1000.Sum(number, plusOne);
+            Console.WriteLine($"The sum of {number} and {plusOne} is {t1000.Sum(number, plusOne)}");
 
 
-
+            #region Lists
 
             /*   
                 ╔═════════╗ 
@@ -170,7 +179,8 @@ namespace Day01
                     2) Call the Average method on the t1000 variable and pass your grades list to the method.
                     3) print the average that is returned.
              
-            */
+            */ 
+            #endregion
 
 
             Console.ReadKey(true);
@@ -178,6 +188,7 @@ namespace Day01
 
         private static int AddOne(int localNumber)
         {
+            localNumber *= 2;//only affects this local variable
             return localNumber + 1;
         }
 
