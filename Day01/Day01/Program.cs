@@ -69,7 +69,7 @@ namespace Day01
                 2) if the method returns data, it is usually best to store that data in a variable on the line where you call the method.
              
             */
-            int hz = 2000;
+            int hz = 12000;
             int duration = 1500;
             Console.Beep(hz, duration);
             string someData = Console.ReadLine();
@@ -104,6 +104,26 @@ namespace Day01
 
             #region Lists
 
+            Console.WriteLine("---------FOR--------");
+            int[] nums = new int[] { 1, 2, 3, 4, 5 };//good for non-changing amount of data
+            for (int i = 0; i < nums.Length; i++)
+            {
+                Console.WriteLine(nums[i]);//indexer is O(1)
+            }
+            Console.WriteLine("-----FOREACH------");
+            //anonmyous type
+            foreach (var num in nums)
+            {
+                Console.WriteLine(num);
+            }
+            //resize the array
+            int[] temp = new int[nums.Length + 2];
+            for (int i = 0; i < nums.Length; i++)//custom code to copy the data
+            {
+                temp[i] = nums[i];
+            }
+            nums = temp;//KHANS to arrays -- duplicated data
+
             /*   
                 ╔═════════╗ 
                 ║ List<T> ║
@@ -115,18 +135,36 @@ namespace Day01
                 
                 When you want to create a List variable, replace T with whatever type of data you want to store in the List.
             */
-            List<string> names = new List<string>(); //this list stores strings and only strings.
+            List<string> names = new List<string>(10); //this list stores strings and only strings.
 
+            names.Add("Batman"); //how big is the internal array?
+            Info(names); //Count: 1  Capacity: 10
+            names.Add("Bruce");
+            names.Add("Bats");
+            names.Add("The Bat");//Count: 4  Capacity: 10
+            names.Add("Joker");//Count: 5  Capacity: 10
+            Info(names); //Count: 5  Capacity: 10
+            names.Add("Superman");
+            names.Add("Bane");
+            names.Add("Man-Bat");
+            names.Add("Robin");
+            Info(names); //Count: 9  Capacity: 10
+            names.Add("Alfred");
+            names.Add("Mr. Freeze");
+            Info(names); //Count: 11  Capacity: 20
+            //Console.WriteLine(names[15]);//??? index-out-of-range
             /*
                 CHALLENGE 2:
 
                     Create a list that stores floats. Call the variable grades.
              
             */
+            //variables: <type> <name>
+            List<float> grades;//0? nothing? null
+            grades = new(); //empty list.
 
-
-
-
+            //Count - # of items added to the list
+            //Capacity - length of the internal array
 
 
             /*   
@@ -141,7 +179,7 @@ namespace Day01
                 2) using the Add method. 
             */
             List<char> letters = new List<char>() { 'B', 'a', 't', 'm', 'a', 'n' };
-            letters.Add('!');
+            letters.Add('!');//adds to the end of the list
 
             /*
                 CHALLENGE 3:
@@ -149,7 +187,11 @@ namespace Day01
                     Add a few grades to the grades list you created in CHALLENGE 2.
              
             */
-
+            grades = new() { GetGrade(), GetGrade() };
+            grades.Add(GetGrade());
+            grades.Add(GetGrade());
+            grades.Add(GetGrade());
+            grades.Add(GetGrade());
 
 
 
@@ -179,11 +221,38 @@ namespace Day01
                     2) Call the Average method on the t1000 variable and pass your grades list to the method.
                     3) print the average that is returned.
              
-            */ 
+            */
+            float average = t1000.Average(grades);
+            Console.WriteLine("\n\n--------2301 GRADES----------");
+            for (int x = 0; x < grades.Count; x++)
+            {
+                //,7 - right-align with 7 spaces
+                //:N2 - number w/ 2 decimal places
+                float grade = grades[x];
+                if (grade < 59.5) Console.ForegroundColor = ConsoleColor.Red;
+                else if (grade < 69.5) Console.ForegroundColor = ConsoleColor.DarkYellow;
+                else if (grade < 79.5) Console.ForegroundColor = ConsoleColor.Yellow;
+                else if (grade < 89.5) Console.ForegroundColor = ConsoleColor.Blue;
+                else Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"{grade,7:N2}");
+            }
+            Console.ResetColor();
+            Console.WriteLine($"Average grade: {average}");
             #endregion
 
 
             Console.ReadKey(true);
+        }
+
+        static Random rando = new Random();
+        private static float GetGrade()
+        {
+            return (float)rando.NextDouble() * 100;
+        }
+
+        private static void Info(List<string> names)
+        {
+            Console.WriteLine($"Count: {names.Count}\tCapacity: {names.Capacity}");
         }
 
         private static int AddOne(int localNumber)
@@ -208,6 +277,11 @@ namespace Day01
             float avg = 0F;
 
             //loop over the numbers and calculate the average
+            foreach (var number in numbers)
+            {
+                avg+= number;
+            }
+            avg /= numbers.Count;
 
             return avg;
         }
