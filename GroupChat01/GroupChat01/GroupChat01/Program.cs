@@ -17,6 +17,8 @@
                 }
             }
             Console.WriteLine($"Found {name}");
+
+            string usersInput = Console.ReadLine();
         }
 
     }
