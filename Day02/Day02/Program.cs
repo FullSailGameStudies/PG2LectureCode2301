@@ -122,6 +122,7 @@ namespace Day02
             Console.BackgroundColor = randoColor;
             Console.WriteLine("Hello Gotham!");
 
+            Console.ResetColor();
 
             /*
                 CHALLENGE 2:
@@ -133,6 +134,17 @@ namespace Day02
                     3) print out the min, max, and avg
              
             */
+            List<double> grades = new List<double>();
+            for (int i = 0; i < 10; i++)
+            {
+                grades.Add( randy.NextDouble() * 100 );
+            }
+            Calculate(grades, out double min, out double max, out double average);
+            for (int i = 0; i < grades.Count; i++)
+            {
+                Console.WriteLine($"{grades[i],6:N2}");
+            }
+            Console.WriteLine($"Min: {min:N2} \t Max: {max:N2} \t Average: {average:N2}");
 
 
             #endregion
@@ -167,6 +179,20 @@ namespace Day02
             #endregion
 
             Console.ResetColor();
+        }
+
+        private static void Calculate(List<double> grades, out double min, out double max, out double average)
+        {
+            min = double.MaxValue;
+            max = double.MinValue;
+            double sum = 0;
+            foreach (double grade in grades)
+            {
+                sum += grade;
+                min = Math.Min(min, grade);
+                max = Math.Max(max, grade);
+            }
+            average = sum / grades.Count;
         }
 
         private static double Curve(ref double grade)
