@@ -74,7 +74,12 @@ namespace Day02
             */
             string spider = "Spiderman";
             bool isEven = PostFix(ref spider);
+            Console.WriteLine(spider);
 
+            int number = 5;
+            isEven = Factor(ref number, 3);
+            int score = 10;
+            isEven = Factor(ref score, 5);
             /*
                 CHALLENGE 1:
 
@@ -86,8 +91,14 @@ namespace Day02
              
             */
             double grade = randy.NextDouble() * 100;
+            Console.WriteLine($"My current grade: {grade}");
+            double curve = Curve(ref grade);
+            Console.WriteLine($"My grade was curved (+{curve}) to {grade}");
 
+            (double curveAmount, double newGrage) = Curve(grade);
+            Console.WriteLine($"My grade was curved (+{curveAmount}) to {newGrage}");
 
+            #region Out parameters
 
             /*  
                 ╔═══════════════════════════╗ 
@@ -116,9 +127,9 @@ namespace Day02
             */
 
 
+            #endregion
 
-
-
+            #region List: Removing
 
             /*   
                 ╔═════════╗ 
@@ -145,8 +156,27 @@ namespace Day02
             */
 
 
+            #endregion
 
+            Console.ResetColor();
+        }
 
+        private static double Curve(ref double grade)
+        {
+            double curve = grade * 0.05;
+            grade += curve;
+            return curve;
+        }
+        private static (double, double) Curve(double grade)
+        {
+            double curve = grade * 0.05;
+            return (curve, grade + curve);
+        }
+
+        static bool Factor(ref int num, int factor)
+        {
+            num *= factor;
+            return num % 2 == 0;// % - divides and returns the remainder
         }
 
         private static void GetRandomColor(out ConsoleColor outColor)
