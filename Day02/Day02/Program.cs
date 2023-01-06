@@ -176,10 +176,47 @@ namespace Day02
                     Using the list of grades you created in CHALLENGE 2, remove the min and max grades from the list.
                     Print the grades.
             */
+            PrintGrades(grades);
+            grades.Remove(min);
+            grades.Remove(max);
+            PrintGrades(grades);
+
+            //for (int i = 0; i < grades.Count; i++)
+            //{
+            //    if (grades[i] < 59.5)
+            //    {
+            //        grades.RemoveAt(i);
+            //        i--;
+            //    }
+            //}
+            for (int i = grades.Count - 1; i >= 0; i--)
+            {
+                if (grades[i] < 59.5)
+                {
+                    grades.RemoveAt(i);
+                }
+            }
+            PrintGrades(grades);
 
 
             #endregion
 
+            Console.ResetColor();
+        }
+
+        private static void PrintGrades(List<double> grades)
+        {
+            Console.WriteLine("---------GRADES----------");
+            foreach (var grade in grades)
+            {
+                //ternary operator  (condition) ? <condition is true> : <condition is false>
+                Console.ForegroundColor = (grade < 59.5) ? ConsoleColor.Red :
+                                          (grade < 69.5) ? ConsoleColor.DarkYellow :
+                                          (grade < 79.5) ? ConsoleColor.Yellow :
+                                          (grade < 89.5) ? ConsoleColor.Blue :
+                                          ConsoleColor.Green;
+                Console.WriteLine($"{grade,7:N2}");
+            }
             Console.ResetColor();
         }
 
