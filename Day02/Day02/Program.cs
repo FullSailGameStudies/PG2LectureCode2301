@@ -164,9 +164,11 @@ namespace Day02
 
             */
             List<string> dc = new() { "Batman", "Wonder Woman", "Aquaman", "Superman", "Aquaman" };
-            bool found = dc.Remove("Aquaman");
-
+            Print(dc);
+            bool found = dc.Remove("Aquaman"); 
+            Print(dc);
             dc.RemoveAt(dc.Count - 1);//removes the last item
+            Print(dc);
 
             /*
                 CHALLENGE 3:
@@ -179,6 +181,13 @@ namespace Day02
             #endregion
 
             Console.ResetColor();
+        }
+
+        private static void Print(List<string> dc)
+        {
+            Console.WriteLine("----------Justice League----------");
+            foreach (string hero in dc) 
+                Console.WriteLine(hero);
         }
 
         private static void Calculate(List<double> grades, out double min, out double max, out double average)
