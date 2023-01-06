@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace Day02
@@ -63,15 +64,16 @@ namespace Day02
         static void Main(string[] args)
         {
 
+            #region Pass by reference
             /*   
-                ╔══════════════════════════════╗ 
-                ║Parameters: Pass by Reference.║
-                ╚══════════════════════════════╝ 
-                Sends the variable itself to the method. The method parameter gives the variable a NEW name (i.e. an alias)
-                  
-                NOTE: if the method assigns a new value to the parameter, the variable used when calling the method will change too.
-                    This is because the parameter is actually just a new name for the other variable.
-            */
+                    ╔══════════════════════════════╗ 
+                    ║Parameters: Pass by Reference.║
+                    ╚══════════════════════════════╝ 
+                    Sends the variable itself to the method. The method parameter gives the variable a NEW name (i.e. an alias)
+
+                    NOTE: if the method assigns a new value to the parameter, the variable used when calling the method will change too.
+                        This is because the parameter is actually just a new name for the other variable.
+                */
             string spider = "Spiderman";
             bool isEven = PostFix(ref spider);
             Console.WriteLine(spider);
@@ -95,8 +97,13 @@ namespace Day02
             double curve = Curve(ref grade);
             Console.WriteLine($"My grade was curved (+{curve}) to {grade}");
 
-            (double curveAmount, double newGrage) = Curve(grade);
-            Console.WriteLine($"My grade was curved (+{curveAmount}) to {newGrage}");
+            (double curveAmount, double newGrade) = Curve(grade);
+            Console.WriteLine($"My grade was curved (+{curveAmount}) to {newGrade}");
+
+            Curve(grade, out curveAmount, out newGrade);
+            Console.WriteLine($"My grade was curved (+{curveAmount}) to {newGrade}");
+
+            #endregion
 
             #region Out parameters
 
@@ -121,7 +128,8 @@ namespace Day02
 
                     Write a method to calculate the stats on a list of grades
                     1) create a list of grades in main and add a few grades to it
-                    2) create a method to calculate the min, max, and avg. use out parameters to pass this data back from the method.
+                    2) create a method to calculate the min, max, and avg. 
+                        use out parameters to pass this data back from the method.
                     3) print out the min, max, and avg
              
             */
@@ -164,13 +172,18 @@ namespace Day02
         private static double Curve(ref double grade)
         {
             double curve = grade * 0.05;
-            grade += curve;
+            //grade += curve;
             return curve;
         }
         private static (double, double) Curve(double grade)
         {
             double curve = grade * 0.05;
             return (curve, grade + curve);
+        }
+        private static void Curve(double oldGrade, out double curve, out double newGrade)
+        {
+            curve = oldGrade * 0.05;
+            newGrade = oldGrade + curve;
         }
 
         static bool Factor(ref int num, int factor)
