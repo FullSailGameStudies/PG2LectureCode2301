@@ -85,12 +85,40 @@ namespace Day03
                 CHALLENGE 1:
 
                     Write a ColorWriteLine method to print a message with a foreground color in the console.
-                    1) add a string message parameter AND an optional color parameter. Choose whatever default color you want.
+                    1) add a string message parameter AND an optional color parameter. 
+                       Choose whatever default color you want.
                     2) in the method, set the foreground color to the optional parameter
                     3) print the message
              
             */
+            Console.ReadKey();
+            ColorWriteLine("Hello Gotham!");
+            ColorWriteLine("Hello Gotham!", ConsoleColor.Yellow, ConsoleColor.DarkCyan);
+            Random rando = new Random();
+            string message = "NA";
+            while (true)
+            {
+                if (rando.Next(100) == 50)
+                    message = "         BATMAN        ";
+                else
+                    message = "NA";
+                ColorWriteLine(message,
+                    (ConsoleColor)rando.Next(16),
+                    (ConsoleColor)rando.Next(16),
+                    rando.Next(Console.WindowWidth),
+                    rando.Next(Console.WindowHeight-1));
+            }
 
+        }
+
+        static void ColorWriteLine(string message, ConsoleColor fore = ConsoleColor.Gray, ConsoleColor back = ConsoleColor.Black,
+            int x = 0, int y = 0)
+        {
+            Console.SetCursorPosition(x, y);
+            Console.ForegroundColor = fore;
+            Console.BackgroundColor = back;
+            Console.WriteLine(message);
+            Console.ResetColor();
         }
 
         static string PostFix(string fileName, int postFixNumber = 1) //postFixNumber is optional
