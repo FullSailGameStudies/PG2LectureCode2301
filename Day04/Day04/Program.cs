@@ -21,6 +21,8 @@ namespace Day04
                 All recursive methods need an exit condition, something that prevents the loop from continuing.
               
             */
+            Console.ReadKey();
+            //Recurse(0); //i = 0
             int N = 0;
             //RecursiveLoop(N);
             Console.ResetColor();
@@ -39,6 +41,15 @@ namespace Day04
                     }
             */
 
+            Bats(0);
+            Console.Write((char)66);
+            Console.Write((char)65);
+            Console.Write((char)84);
+            Console.Write((char)77);
+            Console.Write((char)65);
+            Console.Write((char)78);
+            Console.WriteLine("!");
+            Console.ReadKey();
 
 
 
@@ -78,16 +89,27 @@ namespace Day04
             //   1  greater than
             int result = s1.CompareTo(s2);
             if (result == 0) Console.WriteLine($"{s1} EQUALS {s2}");
-            else if(result == -1) Console.WriteLine($"{s1} LESS THAN {s2}");
+            else if (result == -1) Console.WriteLine($"{s1} LESS THAN {s2}");
             else if (result == 1) Console.WriteLine($"{s1} GREATER THAN {s2}");
 
             List<int> numbers = new List<int>() { 5, 4, 3, 2, 1 };
-            List<string> names = new() { "Bruce", "Clark", "Adam", "Dave", "Bob"};
+            List<string> names = new() { "Bruce", "Clark", "Adam", "Dave", "Bob" };
             BubbleSort(names);
-            foreach(string name in names)
+            foreach (string name in names)
                 Console.WriteLine(name);
             //numbers.Sort();
 
+        }
+
+        static void Bats(int i)
+        {
+            if (i < 100)
+            {
+                Console.Write((char)78);
+                Console.Write((char)65);
+                Console.Write(' ');
+                Bats(i + 1);
+            }
         }
         static void BubbleSort(List<string> A)
         {
@@ -96,7 +118,7 @@ namespace Day04
             do
             {
                 swapped = false;
-                for (int i = 1; i <= n-1; i++)
+                for (int i = 1; i <= n - 1; i++)
                 {
                     if (A[i - 1].CompareTo(A[i]) > 0)
                     {
@@ -105,7 +127,7 @@ namespace Day04
                         //int temp = A[i - 1];
                         //A[i - 1] = A[i];
                         //A[i] = temp;
-                        (A[i], A[i-1]) = (A[i-1], A[i]);
+                        (A[i], A[i - 1]) = (A[i - 1], A[i]);
                         swapped = true;
                     }
                 }
@@ -114,6 +136,21 @@ namespace Day04
             } while (swapped);
         }
 
+        //loop 1000 times
+        //     for (int i = 0; i<1000; i++)
+        //{
+        //             Console.WriteLine(i);
+
+        //}
+        static void Recurse(int N)
+        {
+            //all recursive methods need an EXIT CONDITION
+            //if (N < 1000) //i < 1000
+            {
+                //Console.WriteLine(N);
+                Recurse(N + 1); //i++
+            }
+        }
 
         static void RecursiveLoop(int N)
         {
