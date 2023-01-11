@@ -181,6 +181,21 @@ namespace Day04
                     Loop over your grades dictionary and print each student name and grade.
              
             */
+            Console.WriteLine("----------PG2-----------");
+            foreach (KeyValuePair<string,double> studentgrade in grades)
+            {
+                string student = studentgrade.Key;
+                double grade = studentgrade.Value;
+                Console.ForegroundColor = (grade < 59.5) ? ConsoleColor.Red :
+                    (grade < 69.5) ? ConsoleColor.DarkYellow :
+                    (grade < 79.5) ? ConsoleColor.Yellow : 
+                    (grade < 89.5) ? ConsoleColor.Blue :
+                    ConsoleColor.Green;
+                Console.Write($"{grade,7:N2} ");
+                Console.ResetColor();
+
+                Console.WriteLine($"{student}");
+            }
 
 
 
@@ -197,13 +212,22 @@ namespace Day04
                 1) ContainsKey(key)
                 2) TryGetValue(key, out value)
                
-            */            
+            */
             if(backpack.ContainsKey(Weapon.Axe))
                 Console.WriteLine($"{Weapon.Axe} count: {backpack[Weapon.Axe]}");
 
             if(backpack.TryGetValue(Weapon.Spear, out int spearCount))
                 Console.WriteLine($"{Weapon.Spear} count: {spearCount}");
 
+            string item = "Apple Pie";
+            if (menu.TryGetValue(item, out int cost))
+            {
+                Console.WriteLine($"{item} costs {cost:C0}");
+            }
+            else
+            {
+                menu[item] = 8;
+            }
 
             /*
                 CHALLENGE 5:
