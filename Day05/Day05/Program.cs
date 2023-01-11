@@ -48,7 +48,7 @@ namespace Day04
                 When you want to create a Dictionary variable, replace TKey with whatever type of data you want to use for the keys and
                 replace TValue with the type you want to use for the values.
             */
-           
+
             Dictionary<Weapon, int> backpack = new Dictionary<Weapon, int>();//will store the counts of each kind of weapon
             Dictionary<string, int> menu = new Dictionary<string, int>();
 
@@ -163,14 +163,14 @@ namespace Day04
             //    menu[i] 
             //}
             Console.WriteLine("Welcome to The Pie Palace");
-            foreach (KeyValuePair<string,int> keyValue in menu)
+            foreach (KeyValuePair<string, int> keyValue in menu)
             {
                 string name = keyValue.Key;
                 int price = keyValue.Value;
                 Console.WriteLine($"{price,4:C0} {name}");
             }
             Console.WriteLine();
-            foreach (KeyValuePair<Weapon,int> weaponCount in backpack)
+            foreach (KeyValuePair<Weapon, int> weaponCount in backpack)
                 Console.WriteLine($"You have {weaponCount.Value} {weaponCount.Key}");
 
 
@@ -181,17 +181,7 @@ namespace Day04
                     Loop over your grades dictionary and print each student name and grade.
              
             */
-            Console.WriteLine("----------PG2-----------");
-            foreach (KeyValuePair<string,double> studentgrade in grades)
-            {
-                string student = studentgrade.Key;
-                double grade = studentgrade.Value;
-                SetGradeColor(grade);
-                Console.Write($"{grade,7:N2} ");
-                Console.ResetColor();
-
-                Console.WriteLine($"{student}");
-            }
+            PrintGrades(grades);
 
 
 
@@ -212,7 +202,7 @@ namespace Day04
             if (backpack.ContainsKey(Weapon.Axe))
                 Console.WriteLine($"{Weapon.Axe} count: {backpack[Weapon.Axe]}");
 
-            if(backpack.TryGetValue(Weapon.Spear, out int spearCount))
+            if (backpack.TryGetValue(Weapon.Spear, out int spearCount))
                 Console.WriteLine($"{Weapon.Spear} count: {spearCount}");
 
             string item = "Apple Pie";
@@ -284,6 +274,47 @@ namespace Day04
                     Pick any student and curve the grade (add 5) that is stored in the grades dictionary
              
             */
+            do
+            {
+                Console.Write("What student do you want to curve? ");
+                string input = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(input)) break;
+
+                if (grades.TryGetValue(input, out double grade))
+                {
+                    grades[input] = grade + 5;
+                    PrintGrades(grades);
+
+                    Console.Write($"{input}'s grade was ");
+                    SetGradeColor(grade);
+                    Console.Write($"{grade:N2}.");
+                    Console.ResetColor();
+
+                    Console.Write(" Now it's ");
+                    grade = grades[input];
+                    SetGradeColor(grade);
+                    Console.Write($"{grade:N2}.");
+                    Console.ResetColor();
+                }
+                else
+                    Console.WriteLine($"{input} is not in PG2.");
+
+            } while (true);
+        }
+
+        private static void PrintGrades(Dictionary<string, double> grades)
+        {
+            Console.WriteLine("----------PG2-----------");
+            foreach (KeyValuePair<string, double> studentgrade in grades)
+            {
+                string student = studentgrade.Key;
+                double grade = studentgrade.Value;
+                SetGradeColor(grade);
+                Console.Write($"{grade,7:N2} ");
+                Console.ResetColor();
+
+                Console.WriteLine($"{student}");
+            }
         }
 
         private static void SetGradeColor(double grade)
