@@ -270,7 +270,13 @@ namespace Day04
             */
             backpack[Weapon.Mace] = 0; //sell all maces
 
-
+            item = "Blueberry Pie";
+            if (menu.TryGetValue(item, out cost))
+            {
+                //cost *= 2;
+                menu[item] = cost * 2;
+                Console.WriteLine($"{item} used to cost {cost}. Now it's {menu[item]}. Thanks PUTIN!");
+            }
 
             /*
                 CHALLENGE 6:
