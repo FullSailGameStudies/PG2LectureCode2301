@@ -186,11 +186,7 @@ namespace Day04
             {
                 string student = studentgrade.Key;
                 double grade = studentgrade.Value;
-                Console.ForegroundColor = (grade < 59.5) ? ConsoleColor.Red :
-                    (grade < 69.5) ? ConsoleColor.DarkYellow :
-                    (grade < 79.5) ? ConsoleColor.Yellow : 
-                    (grade < 89.5) ? ConsoleColor.Blue :
-                    ConsoleColor.Green;
+                SetGradeColor(grade);
                 Console.Write($"{grade,7:N2} ");
                 Console.ResetColor();
 
@@ -213,7 +209,7 @@ namespace Day04
                 2) TryGetValue(key, out value)
                
             */
-            if(backpack.ContainsKey(Weapon.Axe))
+            if (backpack.ContainsKey(Weapon.Axe))
                 Console.WriteLine($"{Weapon.Axe} count: {backpack[Weapon.Axe]}");
 
             if(backpack.TryGetValue(Weapon.Spear, out int spearCount))
@@ -237,6 +233,23 @@ namespace Day04
                     else print out a message that the student was not found
              
             */
+            do
+            {
+                Console.Write("What student do you want to look up? ");
+                string input = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(input)) break;
+
+                if (grades.TryGetValue(input, out double grade))
+                {
+                    Console.Write($"{input}'s grade is ");
+                    SetGradeColor(grade);
+                    Console.WriteLine($"{grade:N2}");
+                    Console.ResetColor();
+                }
+                else
+                    Console.WriteLine($"{input} is not in PG2.");
+
+            } while (true);
 
 
 
@@ -265,6 +278,15 @@ namespace Day04
                     Pick any student and curve the grade (add 5) that is stored in the grades dictionary
              
             */
+        }
+
+        private static void SetGradeColor(double grade)
+        {
+            Console.ForegroundColor = (grade < 59.5) ? ConsoleColor.Red :
+                                (grade < 69.5) ? ConsoleColor.DarkYellow :
+                                (grade < 79.5) ? ConsoleColor.Yellow :
+                                (grade < 89.5) ? ConsoleColor.Blue :
+                                ConsoleColor.Green;
         }
     }
 }
