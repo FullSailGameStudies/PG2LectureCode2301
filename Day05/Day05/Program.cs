@@ -50,13 +50,15 @@ namespace Day04
             */
            
             Dictionary<Weapon, int> backpack = new Dictionary<Weapon, int>();//will store the counts of each kind of weapon
+            Dictionary<string, int> menu = new Dictionary<string, int>();
 
             /*
                 CHALLENGE 2:
 
-                    Create a Dictionary that stores names (string) and grades. Call the variable grades.
+                    Create a Dictionary that stores names (string) and grades (double). Call the variable grades.
              
             */
+            Dictionary<string, double> grades = new();
 
 
 
@@ -72,7 +74,31 @@ namespace Day04
                 1) on the initializer. 
                 2) using the Add method. 
                 3) using [key] = value
+
+                Keys MUST be unique
+
             */
+            List<string> menuItems = new List<string>() { "Apple Pie", "Pecan Pie" };
+            menuItems.Add("Chocolate Pie");
+            menu = new Dictionary<string, int>()
+            {
+                //(Key, Value)
+                { "Lemon Pie", 1 },
+                { "Blueberry Pie", 2 }
+            };
+            menu.Add("Cherry Pie", 2);
+            try
+            {
+                menu.Add("Cherry Pie", 2);//throws an exception. key is already there.
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("That was already on the menu, STEVE!");
+            }
+            menu["Pumpkin Pie"] = 4;
+            menu["Pumpkin Pie"] = 5;//overwrites the value
+
+
             backpack = new Dictionary<Weapon, int>()
             {
                 {Weapon.Sword, 5 }
@@ -86,8 +112,38 @@ namespace Day04
                     Add students and grades to your dictionary that you created in CHALLENGE 2.
              
             */
+            Random randy = new Random();
+            grades = new()
+            {
+                {"Shaun", randy.NextDouble()*100  },
+                {"Levi", randy.NextDouble()*100  },
+                {"Jerry", randy.NextDouble()*100  },
+                {"Zachary", randy.NextDouble()*100  }
+            };
+            grades.Add("Kliment", randy.NextDouble() * 100);
+            grades.Add("Dean", randy.NextDouble() * 100);
+            grades.Add("James", randy.NextDouble() * 100);
+            grades.Add("Ty", randy.NextDouble() * 100);
+            grades.Add("Christopher", randy.NextDouble() * 100);
+            grades.Add("Thomas", randy.NextDouble() * 100);
 
-
+            grades["Johncarlos"] = randy.NextDouble() * 100;
+            grades["Bjorn"] = randy.NextDouble() * 100;
+            grades["Kaden"] = randy.NextDouble() * 100;
+            grades["Austin"] = randy.NextDouble() * 100;
+            grades["Logan"] = randy.NextDouble() * 100;
+            grades["Judah"] = randy.NextDouble() * 100;
+            grades["Cole"] = randy.NextDouble() * 100;
+            grades["Robert"] = randy.NextDouble() * 100;
+            grades["Gabriel"] = randy.NextDouble() * 100;
+            grades["Chelsea"] = randy.NextDouble() * 100;
+            grades["Kevin"] = randy.NextDouble() * 100;
+            grades["Camden"] = randy.NextDouble() * 100;
+            grades["Adam"] = randy.NextDouble() * 100;
+            grades["Damian"] = randy.NextDouble() * 100;
+            grades["Otto"] = randy.NextDouble() * 100;
+            grades["Tyrone"] = randy.NextDouble() * 100;
+            grades["Darien"] = randy.NextDouble() * 100;
 
 
 
