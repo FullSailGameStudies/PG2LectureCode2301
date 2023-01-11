@@ -158,6 +158,18 @@ namespace Day04
                 You should use a foreach loop when needing to loop over the entire dictionary.
                
             */
+            //for (int i = 0; i < menu.Count; i++)
+            //{
+            //    menu[i] 
+            //}
+            Console.WriteLine("Welcome to The Pie Palace");
+            foreach (KeyValuePair<string,int> keyValue in menu)
+            {
+                string name = keyValue.Key;
+                int price = keyValue.Value;
+                Console.WriteLine($"{price,4:C0} {name}");
+            }
+            Console.WriteLine();
             foreach (KeyValuePair<Weapon,int> weaponCount in backpack)
                 Console.WriteLine($"You have {weaponCount.Value} {weaponCount.Key}");
 
