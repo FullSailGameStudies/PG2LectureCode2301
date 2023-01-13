@@ -37,8 +37,6 @@ namespace Day06
             bool wasFound = backpack.Remove(Weapon.Mace);
             if (!wasFound) Console.WriteLine($"{Weapon.Mace} was NOT found.");
 
-
-
             /*
                 CHALLENGE 1:
 
@@ -51,12 +49,71 @@ namespace Day06
 
              
             */
-            List<string> students = new List<string>() { "Bruce", "Dick", "Diana", "Alfred", "Clark", "Arthur", "Barry" };
-            Random rando = new Random();
-            Dictionary<string, double> grades = new();
-            foreach (var student in students)
-                grades.Add(student, rando.NextDouble() * 100);
+            Dictionary<string, double> grades = GetGrades();
+            PrintGrades(grades);
             
+        }
+
+        private static Dictionary<string, double> GetGrades()
+        {
+            Random randy = new Random();
+            Dictionary<string, double> grades = new()
+            {
+                {"Shaun", randy.NextDouble()*100  },
+                {"Levi", randy.NextDouble()*100  },
+                {"Jerry", randy.NextDouble()*100  },
+                {"Zachary", randy.NextDouble()*100  }
+            };
+            grades.Add("Kliment", randy.NextDouble() * 100);
+            grades.Add("Dean", randy.NextDouble() * 100);
+            grades.Add("James", randy.NextDouble() * 100);
+            grades.Add("Ty", randy.NextDouble() * 100);
+            grades.Add("Christopher", randy.NextDouble() * 100);
+            grades.Add("Thomas", randy.NextDouble() * 100);
+
+            grades["Johncarlos"] = randy.NextDouble() * 100;
+            grades["Bjorn"] = randy.NextDouble() * 100;
+            grades["Kaden"] = randy.NextDouble() * 100;
+            grades["Austin"] = randy.NextDouble() * 100;
+            grades["Logan"] = randy.NextDouble() * 100;
+            grades["Judah"] = randy.NextDouble() * 100;
+            grades["Cole"] = randy.NextDouble() * 100;
+            grades["Robert"] = randy.NextDouble() * 100;
+            grades["Gabriel"] = randy.NextDouble() * 100;
+            grades["Chelsea"] = randy.NextDouble() * 100;
+            grades["Kevin"] = randy.NextDouble() * 100;
+            grades["Camden"] = randy.NextDouble() * 100;
+            grades["Adam"] = randy.NextDouble() * 100;
+            grades["Damian"] = randy.NextDouble() * 100;
+            grades["Otto"] = randy.NextDouble() * 100;
+            grades["Tyrone"] = randy.NextDouble() * 100;
+            grades["Darien"] = randy.NextDouble() * 100;
+
+            return grades;
+        }
+
+        private static void PrintGrades(Dictionary<string, double> grades)
+        {
+            Console.WriteLine("----------PG2-----------");
+            foreach (KeyValuePair<string, double> studentgrade in grades)
+            {
+                string student = studentgrade.Key;
+                double grade = studentgrade.Value;
+                SetGradeColor(grade);
+                Console.Write($"{grade,7:N2} ");
+                Console.ResetColor();
+
+                Console.WriteLine($"{student}");
+            }
+        }
+
+        private static void SetGradeColor(double grade)
+        {
+            Console.ForegroundColor = (grade < 59.5) ? ConsoleColor.Red :
+                                (grade < 69.5) ? ConsoleColor.DarkYellow :
+                                (grade < 79.5) ? ConsoleColor.Yellow :
+                                (grade < 89.5) ? ConsoleColor.Blue :
+                                ConsoleColor.Green;
         }
     }
 }
