@@ -51,6 +51,21 @@ namespace Day06
             */
             Dictionary<string, double> grades = GetGrades();
             PrintGrades(grades);
+            do
+            {
+                Console.Write("Enter the name of the student to drop: ");
+                string input = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(input)) break;
+
+                if(grades.Remove(input))
+                {
+                    PrintGrades(grades);
+                    Console.WriteLine($"{input} was dropped from PG2!");
+                }
+                else
+                    Console.WriteLine($"{input} is not in the course.");
+
+            } while (true);
             
         }
 
