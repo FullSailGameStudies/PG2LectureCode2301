@@ -19,5 +19,12 @@ namespace Day07CL
             } 
         }
         public string Name { get; set; }
+
+        public Person(int age, string name)
+        {
+            Age = age;
+            //?? - null coalescing operator
+            Name = name;
+        }
     }
 }

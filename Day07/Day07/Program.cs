@@ -104,8 +104,14 @@ namespace Day07
                     Add an Age property provide access to the _age field
                     Add an auto-property for Name
             */
+            Random rando = new Random();
 
-            GameObject gObj = new GameObject();
+            GameObject gObj;//= new GameObject();
+            gObj = new GameObject(5, 10, ConsoleColor.Red);
+            gObj = new GameObject(rando.Next(Console.WindowWidth),
+                                  rando.Next(Console.WindowHeight),
+                                  (ConsoleColor)rando.Next(16));
+
             gObj.X = 1000000;//call the 'set'
             int xPos = gObj.X; //call the 'get'
 

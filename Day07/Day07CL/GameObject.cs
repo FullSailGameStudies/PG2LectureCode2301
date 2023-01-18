@@ -44,6 +44,21 @@ namespace Day07CL
         }
         #endregion
 
+        #region Constructors (ctor)
+        //the compiler will give you a default ctor IF you don't provide any ctor
+        public GameObject() //default ctor (no parameters)
+        {
+
+        }
+        public GameObject(int x, int y, ConsoleColor color)
+        {
+            X = x;
+            Y = y;
+            Color = color;
+        }
+
+        #endregion
+
         void Draw()
         {
             Console.SetCursorPosition(_x, _y);
