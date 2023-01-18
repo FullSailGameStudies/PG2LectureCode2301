@@ -169,6 +169,8 @@ namespace Day07
                 CHALLENGE 5:
                     write an ItsMyBirthday method. increment age and print out a happy message.
             */
+            Person bruce = new Person(35, "Bruce Wayne");
+            bruce.ItsMyBirthday();
 
             GameObject p = new GameObject(5,10,ConsoleColor.Red);
             GameObject npc = new(3, 3, ConsoleColor.Green);

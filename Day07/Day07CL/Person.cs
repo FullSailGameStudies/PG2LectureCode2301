@@ -26,5 +26,11 @@ namespace Day07CL
             //?? - null coalescing operator
             Name = name;
         }
+
+        public void ItsMyBirthday()
+        {
+            Age++;
+            Console.WriteLine($"It's my birthday! I'm {Age} years old!! WOOT! Let's have some cake!");
+        }
     }
 }
