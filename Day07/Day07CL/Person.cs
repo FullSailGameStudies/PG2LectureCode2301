@@ -8,6 +8,6 @@ namespace Day07CL
 {
     public class Person
     {
-
+        private int _age = 0;
     }
 }

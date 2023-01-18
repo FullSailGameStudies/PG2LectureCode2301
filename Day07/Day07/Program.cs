@@ -105,6 +105,10 @@ namespace Day07
                     Add an auto-property for Name
             */
 
+            GameObject gObj = new GameObject();
+            gObj.X = 1000000;//call the 'set'
+            int xPos = gObj.X; //call the 'get'
+
 
 
 
