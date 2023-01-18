@@ -10,6 +10,8 @@ namespace Day07CL
     {
         #region Fields
         private int _x, _y;
+
+        private static int _numberOfObjects = 0;
         #endregion
 
         #region Properties
@@ -59,9 +61,15 @@ namespace Day07CL
 
         #endregion
 
-        void Draw()
+        public void Draw()//hidden parameter called 'GameObject this'
         {
-            Console.SetCursorPosition(_x, _y);
+            Console.SetCursorPosition(this._x, this._y);
+        }
+
+        public static void DebugReport()//there is NO 'this'
+        {
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine($"# of objects: {_numberOfObjects}");
         }
     }
 }

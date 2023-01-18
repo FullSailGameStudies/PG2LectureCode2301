@@ -170,6 +170,11 @@ namespace Day07
                     write an ItsMyBirthday method. increment age and print out a happy message.
             */
 
+            GameObject p = new GameObject(5,10,ConsoleColor.Red);
+            GameObject npc = new(3, 3, ConsoleColor.Green);
+            p.Draw();//passing in 'p' as the 'this'
+            npc.Draw();
+            GameObject.DebugReport();
 
 
 
