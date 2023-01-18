@@ -14,7 +14,7 @@ namespace Day07CL
 
         #region Properties
         //AUTO property: the compiler provides the backing field. no code in the get/set.
-        public ConsoleColor Color { get; private set; }
+        public ConsoleColor Color { get; private set; } = ConsoleColor.Green;
 
         public int Y
         {
