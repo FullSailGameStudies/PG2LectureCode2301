@@ -1,4 +1,6 @@
-﻿namespace Day08
+﻿using Day08CL;
+
+namespace Day08
 {
     /*                    DERIVING CLASSESS          
                                                                
@@ -53,6 +55,20 @@
                     Create a List of Weapon. Create several Pistols and add them to the list of weapons.
             */
 
+            int smallNum = 5;
+            long bigNum = smallNum; //Implicit cast
+            smallNum = (int)bigNum; //Explicit cast
+
+            Player bob = new Player('$', 5, 5, ConsoleColor.Green);
+            GameObject gObject = bob; //UPCASTING -- ALWAYS safe
+            //casting from a DERIVED type to a BASE type
+            List<GameObject> gameObjects = new List<GameObject>();
+            gameObjects.Add(bob);//upcasting
+
+            List<Weapon> backpack = new List<Weapon>();
+            backpack.Add(new Pistol(25, 25, 500, 100));
+            backpack.Add(new Pistol(50, 100, 350, 100));
+            backpack.Add(new Pistol(15, 15, 500, 100));
 
 
 
