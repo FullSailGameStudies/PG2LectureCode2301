@@ -141,10 +141,10 @@ namespace Day08
             foreach (Weapon weapon in backpack)
             {
                 weapon.ShowMe();
-                if (weapon is Pistol pewpew)
-                {
-                    Console.WriteLine($"It's a pistol with {pewpew.Rounds} rounds. Come get some!!");
-                }
+                //if (weapon is Pistol pewpew)
+                //{
+                //    Console.WriteLine($"It's a pistol with {pewpew.Rounds} rounds. Come get some!!");
+                //}
             }
 
 
