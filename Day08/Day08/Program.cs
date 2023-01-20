@@ -94,6 +94,12 @@ namespace Day08
                 Console.WriteLine(pTwo.Symbol);
             }
 
+            //3) use pattern matching with the 'is' keyword
+            if (gObject is Player pThree)
+            {
+                Console.WriteLine(pThree.Symbol);
+            }
+
 
 
 
@@ -132,6 +138,14 @@ namespace Day08
                     Downcast to a Pistol and print the rounds and mag capacity of each pistol
             */
 
+            foreach (Weapon weapon in backpack)
+            {
+                weapon.ShowMe();
+                if (weapon is Pistol pewpew)
+                {
+                    Console.WriteLine($"It's a pistol with {pewpew.Rounds} rounds. Come get some!!");
+                }
+            }
 
 
 
