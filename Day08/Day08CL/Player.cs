@@ -21,5 +21,13 @@ namespace Day08CL
         {
             X++;
         }
+
+        public override void Draw()
+        {
+            //base.Draw();//fully overriding
+            Console.SetCursorPosition(X, Y);
+            Console.ForegroundColor = Color;
+            Console.WriteLine(Symbol);
+        }
     }
 }

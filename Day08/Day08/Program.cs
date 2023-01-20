@@ -175,9 +175,12 @@ namespace Day08
 
 
                 CHALLENGE 4:
-                    Override Weapon's ShowMe method in the Pistol method.
+                    Override Weapon's ShowMe method in the Pistol class.
                     In Pistol's version, call the base version and print out the rounds and magCapacity
             */
+
+            gObject = bob;
+            gObject.Draw();//which Draw method does it call? Player.Draw gets called
         }
     }
 }

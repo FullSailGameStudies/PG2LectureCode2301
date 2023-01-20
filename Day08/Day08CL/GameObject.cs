@@ -68,9 +68,11 @@ namespace Day08CL
 
         #endregion
 
-        public void Draw()//hidden parameter called 'GameObject this'
+        public virtual void Draw()//hidden parameter called 'GameObject this'
         {
             Console.SetCursorPosition(_x, _y);
+            Console.BackgroundColor = Color;
+            Console.WriteLine(" ");
         }
 
         public static void DebugReport()//there is NO 'this'
