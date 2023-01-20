@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Day07CL
+namespace Day08CL
 {
 
     struct ColorStruct
@@ -46,7 +46,7 @@ namespace Day07CL
             //mutator
             //same as...
             //public void SetX(int value) { _x = value; }
-            set { 
+            protected set { 
                 if(value >= 0 && value < Console.WindowWidth)
                     _x = value; 
             }
@@ -55,10 +55,10 @@ namespace Day07CL
 
         #region Constructors (ctor)
         //the compiler will give you a default ctor IF you don't provide any ctor
-        public GameObject() //default ctor (no parameters)
-        {
+        //public GameObject() //default ctor (no parameters)
+        //{
 
-        }
+        //}
         public GameObject(int x, int y, ConsoleColor color)
         {
             X = x;
