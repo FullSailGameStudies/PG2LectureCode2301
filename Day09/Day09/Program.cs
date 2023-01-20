@@ -1,5 +1,10 @@
 ﻿namespace Day09
 {
+    enum Powers
+    {
+        Strength, Money, Speed
+    }
+
     internal class Program
     {
         static void Main(string[] args)
@@ -10,6 +15,13 @@
             int n1 = 5, n2 = 2;
             int sum = t1000.Sum(n1,n2);
             Console.WriteLine($"{n1} + {n2} = {sum}");
+
+            decimal d1 = 10, d2 = 20;
+            decimal result = t1000.Sum(d1, d2);
+            Console.Write($"{d1} + {d2} = ");
+            Console.ForegroundColor = result.GetColor();
+            Console.WriteLine(result);
+            Console.ResetColor();
         }
     }
 
@@ -28,11 +40,16 @@
             Add a overload of the Sum method to sum 2 doubles
     */
 
-    class Calculator
+    public class Calculator
     {
         public int Sum(int n1, int n2)
         {
             return n1 + n2;
+        }
+
+        public double Sum(double d1, double d2)
+        {
+            return d1 + d2;
         }
     }
 }
