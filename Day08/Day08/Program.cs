@@ -70,7 +70,29 @@ namespace Day08
             backpack.Add(new Pistol(50, 100, 350, 100));
             backpack.Add(new Pistol(15, 15, 500, 100));
 
+            //DOWNCASTING
+            //casting from a BASE type to a DERIVED type
+            // NOT SAFE!!!!!
+            //3 ways to downcast safely
+            gObject = new GameObject(1, 1, ConsoleColor.Red);
 
+            //1) explicit cast in a try-catch
+            try
+            {
+                Player pOne = (Player)gObject;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("That's not a game object, Steve!");
+            }
+
+            //2) use the 'as' keyword
+            //      if cannot be downcasted, assigns NULL
+            Player pTwo = gObject as Player;
+            if(pTwo != null)
+            {
+                Console.WriteLine(pTwo.Symbol);
+            }
 
 
 
