@@ -1,4 +1,6 @@
-﻿namespace Day10
+﻿using Newtonsoft.Json;
+
+namespace Day10
 {
 
     /*
@@ -17,6 +19,19 @@
             the using() statement can ensure that the file is closed
 
     */
+
+    enum Superpower
+    {
+        Money, Health, Invisibility, IQ, LaserVision, Flight, Speed, Strength, Swimming
+    }
+    class Superhero
+    {
+        public string Name { get; set; }
+        public string SecretIdentity { get; set; }
+        public Superpower Power { get; set; }
+        public int Level { get; set; }
+
+    }
     internal class Program
     {
         static void Main(string[] args)
@@ -82,7 +97,7 @@
             */
             string csvString = "Batman;Bruce Wayne;Bats;;;The Dark Knight?Joker?Riddler?Aquaman";
             char[] delims = { ';', '?' };
-            string[] data = csvString.Split(delims,StringSplitOptions.RemoveEmptyEntries);
+            string[] data = csvString.Split(delims, StringSplitOptions.RemoveEmptyEntries);
             int index = 0;
             foreach (var item in data)
             {
@@ -120,8 +135,24 @@
 
             */
 
+            List<Superhero> JLA = new List<Superhero>();
+            JLA.Add(new Superhero() { Name = "Batman", SecretIdentity = "Bruce Wayne", Power = Superpower.Money, Level = 1000 });
+            JLA.Add(new Superhero() { Name = "Wonder Woman", SecretIdentity = "Diana Prince", Power = Superpower.Strength, Level = 999 });
+            JLA.Add(new Superhero() { Name = "Flash", SecretIdentity = "Barry Allen", Power = Superpower.Speed, Level = 900 });
+            JLA.Add(new Superhero() { Name = "Superman", SecretIdentity = "Clark Kent", Power = Superpower.Flight, Level = 800 });
+            JLA.Add(new Superhero() { Name = "Green Lantern", SecretIdentity = "Hal Jordan", Power = Superpower.LaserVision, Level = 10 });
+            JLA.Add(new Superhero() { Name = "Aquaman", SecretIdentity = "Arthur Curry", Power = Superpower.Swimming, Level = 1 });
 
-
+            string jsonFile = Path.ChangeExtension(fileName, "json");
+            using (StreamWriter sw = new StreamWriter(jsonFile))
+            {
+                using (JsonTextWriter jtw = new JsonTextWriter(sw))
+                {
+                    JsonSerializer serializer = new JsonSerializer();
+                    serializer.Formatting = Formatting.Indented;
+                    serializer.Serialize(jtw, JLA);
+                }
+            }
 
 
 
@@ -133,7 +164,25 @@
                 Recreating the objects from the saved state (data) of objects
 
             */
+            //1. open/read the json text
+            if (File.Exists(jsonFile))
+            {
+                try
+                {
+                    string heroText = File.ReadAllText(jsonFile);
+                    List<Superhero> heroes = JsonConvert.DeserializeObject<List<Superhero>>(heroText);
 
+                    Console.WriteLine("----------Justice League------------");
+                    foreach (var hero in heroes)
+                    {
+                        Console.WriteLine($"{hero.Name} ({hero.SecretIdentity}) Level {hero.Level} Power: {hero.Power}");
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine($"{jsonFile} is the wrong format.");
+                }
+            }
         }
     }
 }
