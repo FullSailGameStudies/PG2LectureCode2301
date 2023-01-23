@@ -49,11 +49,24 @@
 
             */
 
-            string directories = @"C:\temp\2212"; //use @ in front of the string to ignore escape sequences inside the string
+            string directories = @"C:\temp\2301"; //use @ in front of the string to ignore escape sequences inside the string
             string fileName = "tempFile.txt";
             string filePath = Path.Combine(directories, fileName); //use Path.Combine to get the proper directory separators
 
-
+            //CSV data
+            char delimiter = '*';
+            //1. open the file
+            using (StreamWriter sw = new StreamWriter(filePath)) //IDisposable
+            {
+                //2. write the data
+                sw.Write("Batman rules!");
+                sw.Write(delimiter);
+                sw.Write(5);
+                sw.Write(delimiter);
+                sw.Write(13.420);
+                sw.Write(delimiter);
+                sw.Write("Aquaman stinks!");
+            }//3. CLOSE THE FILE!
 
 
 
@@ -67,15 +80,32 @@
                 use the string's Split method
 
             */
-            string csvString = "Batman;Bruce Wayne;Bats;The Dark Knight";
-            string[] data = csvString.Split(';');
-
+            string csvString = "Batman;Bruce Wayne;Bats;;;The Dark Knight?Joker?Riddler?Aquaman";
+            char[] delims = { ';', '?' };
+            string[] data = csvString.Split(delims,StringSplitOptions.RemoveEmptyEntries);
+            int index = 0;
+            foreach (var item in data)
+            {
+                Console.WriteLine($"{++index}. {item}");
+            }
+            Console.WriteLine();
             /*
                 CHALLENGE 1:
 
                     read the data in from the file above and split the line to get the data
              
             */
+            using (StreamReader sr = new StreamReader(filePath))
+            {
+                string line = sr.ReadLine();
+                string[] info = line.Split(delimiter);
+                for (int i = 0; i < info.Length; i++)
+                {
+                    Console.WriteLine(info[i]);
+                }
+            }
+
+            string[] fileData = File.ReadAllText(filePath).Split(delimiter);//opens, reads, closes the file
 
 
 
