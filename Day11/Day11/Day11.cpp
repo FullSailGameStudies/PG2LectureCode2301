@@ -2,10 +2,25 @@
 //
 
 #include <iostream>
+#include <vector>
 using namespace std;//is this good?? not professionally.
+
+enum Sandwiches
+{
+    Burger,
+    Hoagie,
+    Hotdog,
+    Taco,
+    Cuban
+};
+//forward declaration
+void PrintLunchOrder(Sandwiches order);
 
 int main()
 {
+    Sandwiches lunch = Sandwiches::Hotdog;
+    PrintLunchOrder(lunch);
+
     //std -- namespace
     //:: -- scope resolution operator  (like "System." in C#)
     //cout -- console output stream
@@ -26,15 +41,51 @@ int main()
     int* num = new int(5);
     cout << *num << "\n";
     delete num;//clean up the memory
+    num = nullptr;
+    if(num != nullptr)
+        cout << *num << "\n";
+
+    //seed the random # generator
+    srand(time(NULL));
+    //get a random #
+    int random = rand();//range of 0-RAND_MAX
+    int grade = rand() % 101; //range 0-100
+
+    //templates
+    vector<int> highScores;//stack instance
+    highScores.push_back(rand());
+    highScores.push_back(rand());
+    highScores.push_back(rand());
+    highScores.push_back(rand());
+    highScores.push_back(rand());
+    cout << "--------HIGH SCORES----------\n";
+    for (size_t i = 0; i < highScores.size(); i++)
+    {
+        cout << highScores[i] << "\n";
+    }
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+void PrintLunchOrder(Sandwiches order)
+{
+    double price = 0;
+    switch (order)
+    {
+    case Burger:
+        price = 8.99;
+        break;
+    case Hoagie:
+        price = 10.99;
+        break;
+    case Hotdog:
+        price = 6.99;
+        break;
+    case Taco:
+        price = 4.99;
+        break;
+    case Cuban:
+        price = 12.99;
+        break;
+    default:
+        break;
+    }
+    cout << order << " costs " << price << "\n";
+}
